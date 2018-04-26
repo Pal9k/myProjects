@@ -93,7 +93,51 @@ Freda likes to play Starfleet Commander, Ninja Hamsters, Seahorse Adventures."
 # Return:
 #   The newly created network data structure
 def create_data_structure(string_input):
-    return network
+	network={}
+	while len(string_input)>0:
+	#	dot=string_input.find('.')
+		if string_input.find('.') != -1:
+			string=string_input[:string_input.find('.')+1]
+			string_input=string_input[string_input.find('.')+1:]
+
+		#	f1=string.find('is connected to')
+			if string.find('is connected to') != -1:
+				a=[]
+				user=string[:string.find('is connected to')-1]
+				string=string[string.find('is connected to')+16:]
+				network[user]={'friends':[],'games':[]}
+
+		#		comma=string.find(',')
+				while string.find(',') != -1:
+					friends=string[:string.find(',')]
+					string=string[string.find(',')+2:]
+					a.append(friends)
+				a.append(string[:-1])
+				network[user]['friends']=a
+
+		#	f2=string.find('likes to play')
+
+			if string.find('likes to play') != -1:
+				b=[]
+				user=string[:string.find('likes to play')-1]
+				string=string[string.find('likes to play')+14:]
+
+#				comma=string.find(',')
+				while string.find(',') != -1:
+					games=string[:string.find(',')]
+					string=string[string.find(',')+2:]
+					b.append(games)
+				b.append(string[:-1])
+				network[user]['games']=b
+
+	return network
+
+a="Palak is connected to hiral, jeet.\
+Palak likes to play brwalhala, bgfds.\
+hiral is connected to gfdfs, fdsaw."
+
+print create_data_structure(example_input)
+
 
 # ----------------------------------------------------------------------------- # 
 # Note that the first argument to all procedures below is 'network' This is the #
