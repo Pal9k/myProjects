@@ -134,6 +134,7 @@ def create_data_structure(string_input):
 
 
 
+
 # ----------------------------------------------------------------------------- # 
 # Note that the first argument to all procedures below is 'network' This is the #
 # data structure that you created with your create_data_structure procedure,    #
@@ -223,7 +224,10 @@ def add_connection(network, user_A, user_B):
 #   - If the user already exists in network, return network *UNCHANGED* (do not change
 #     the user's game preferences)
 def add_new_user(network, user, games):
-    return network
+	if user not in network:
+		network[user]={'friends':[],'games':games}
+	return network
+
 		
 # ----------------------------------------------------------------------------- 
 # get_secondary_connections(network, user): 
