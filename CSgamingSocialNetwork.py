@@ -134,7 +134,6 @@ def create_data_structure(string_input):
 
 
 
-
 # ----------------------------------------------------------------------------- # 
 # Note that the first argument to all procedures below is 'network' This is the #
 # data structure that you created with your create_data_structure procedure,    #
@@ -179,7 +178,8 @@ def get_games_liked(network,user):
 		return None
 	if len(network[user]['games'])!=0:
 		return network[user]['games']
-    return []
+	return []
+
 
 # ----------------------------------------------------------------------------- 
 # add_connection(network, user_A, user_B): 
@@ -196,7 +196,14 @@ def get_games_liked(network,user):
 #   - If a connection already exists from user_A to user_B, return network unchanged.
 #   - If user_A or user_B is not in network, return False.
 def add_connection(network, user_A, user_B):
+	if user_A not in network:
+		return False
+	if user_B not in network:
+		return False
+	if user_B not in network[user_A]['friends']:
+		network[user_A]['friends'].append(user_B)
 	return network
+
 
 # ----------------------------------------------------------------------------- 
 # add_new_user(network, user, games): 
