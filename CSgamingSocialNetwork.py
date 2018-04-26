@@ -132,11 +132,7 @@ def create_data_structure(string_input):
 
 	return network
 
-a="Palak is connected to hiral, jeet.\
-Palak likes to play brwalhala, bgfds.\
-hiral is connected to gfdfs, fdsaw."
 
-print create_data_structure(example_input)
 
 
 # ----------------------------------------------------------------------------- # 
@@ -159,7 +155,12 @@ print create_data_structure(example_input)
 #   - If the user has no connections, return an empty list.
 #   - If the user is not in network, return None.
 def get_connections(network, user):
+	if user not in network:
+		return None
+	if len(network[user]['friends'])!=0:
+		return network[user]['friends']
 	return []
+
 
 # ----------------------------------------------------------------------------- 
 # get_games_liked(network, user): 
