@@ -175,6 +175,10 @@ def get_connections(network, user):
 #   - If the user likes no games, return an empty list.
 #   - If the user is not in network, return None.
 def get_games_liked(network,user):
+	if user not in network:
+		return None
+	if len(network[user]['games'])!=0:
+		return network[user]['games']
     return []
 
 # ----------------------------------------------------------------------------- 
