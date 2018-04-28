@@ -320,8 +320,38 @@ def count_common_connections(network, user_A, user_B):
 #   may safely add default parameters since all calls used in the grading script 
 #   will only include the arguments network, user_A, and user_B.
 def find_path_to_friend(network, user_A, user_B):
+	if (user_A not in network) or (user_B not in network):
+		return None
+	source=user_A
+	destination=user_B
+	tocrawl=[source]
+	path=[source]
+	unused=[]
+
+	while len(tocrawl)!=0:
+		connector=tocrawl.pop()
+
+		if connector==destination:
+			path.append(connector)
+			correct_path(network,path,unused)
+			return path
+
+		lists=network[connector]['friends']
+
+		if len(lists)!=0:
+			if connector not in path:
+				path.append(connector)
+			union(unused, tocrawl,lists,source,path)
+		else:
+			unused.append(connector)
+		correct_path(network,path, unused)
+
+	if path[-1] != destination:
+		return None
+
+	return path
+
 	# your RECURSIVE solution here!
-	return None
 
 # Make-Your-Own-Procedure (MYOP)
 # ----------------------------------------------------------------------------- 
@@ -329,6 +359,26 @@ def find_path_to_friend(network, user_A, user_B):
 # structure (like add_new_user) or it should perform some valuable analysis of 
 # your network (like path_to_friend). Don't forget to comment your MYOP. You 
 # may give this procedure any name you want.
+
+def union(unused, tocrawl,lists,source,path):
+	for e in lists:
+		if e not in unused:
+			if e not in path:
+				if e!=source:
+					if e not in tocrawl:
+						tocrawl.append(e)
+
+def correct_path(network,path,unused):
+	while True:
+		if len(path)<=1:
+			break
+		if path[-1] not in network[path[-2]]['friends']:
+			last=path.pop()
+			unused.append(path.pop())
+			path.append(last)
+		else:
+			break
+
 
 # Replace this with your own procedure! You can also uncomment the lines below
 # to see how your code behaves. Have fun!
