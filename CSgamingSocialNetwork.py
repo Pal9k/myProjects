@@ -248,7 +248,20 @@ def add_new_user(network, user, games):
 #   himself/herself. It is also OK if the list contains a user's primary 
 #   connection that is a secondary connection as well.
 def get_secondary_connections(network, user):
-	return []
+	if user not in network:
+		return None
+	if len(network[user]['friends'])>0:
+		connection=network[user]['friends']
+		secondaryConnection=[]
+		for users in connection:
+			secondaryList=network[users]['friends']
+			for secondaryUser in secondaryList:
+				if secondaryUser not in secondaryConnection:
+					secondaryConnection.append(secondaryUser)
+	else:
+		return []
+
+	return secondaryConnection
 
 # ----------------------------------------------------------------------------- 	
 # count_common_connections(network, user_A, user_B): 
