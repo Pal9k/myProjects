@@ -1,0 +1,27 @@
+package com.controller;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.Modal.MemberModal;
+import com.dbconfig.DbConfig;
+import com.model.User;
+
+public class MemberControllerCLS {
+	
+	MemberModal MM = null;
+
+	public MemberControllerCLS(MemberModal MM) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public static void addUser(User u) {
+		Session session=DbConfig.getConnection();
+		Transaction tx=session.beginTransaction();
+		session.save(u);
+		tx.commit();
+		session.close();
+		
+	}
+	
+}

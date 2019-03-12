@@ -1,0 +1,9 @@
+package com.Modal;
+
+public class MemberModal {
+
+	public MemberModal(String username, String password) {
+		// TODO Auto-generated constructor stub
+	}
+
+}
