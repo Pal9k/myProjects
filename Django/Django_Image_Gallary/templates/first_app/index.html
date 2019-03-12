@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- bootstarp -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container">
+      <form method="post">
+        {% csrf_token %}
+        <label for="txt">Text:</label>
+        <br>
+        <input type="text" name="txt">
+        <br>
+        <br>
+        <label for="description">Description</label>
+        <br>
+        <textarea name="description" rows="8" cols="80"></textarea>
+        <br>
+        <br>
+        <label for="img1">Image1</label>
+        <br>
+        <input type="file" name="img1" accept="image/*" />
+        <br>
+        <br>
+        <button type="button" onclick="myFunction()" name="button">Plus</button>
+        <br>
+        <br>
+        <input type="submit" name="submit" value="Submit">
+      </form>
+    </div>
+
+    <script>
+
+      function myFunction() {
+        var i = document.createElement("input");
+        i.type = "file";
+        i.name = "user_name";
+        i.id = "user_name1";
+        i.accept = "image/*";
+
+        var form = document.getElementsByTagName("form")[0];
+        var submit = document.getElementsByTagName("button")[0];
+        form.insertBefore (i,submit);
+
+        var l = document.createElement('lable');
+        l.innerHTML = "Image2";
+
+        form.insertBefore(l,i);
+
+        var b = document.createElement('br');
+        form.insertBefore(b,l);
+
+        form.insertBefore(b,i);
+        form.insertBefore(b,submit);
+        form.insertBefore(b,submit);
+
+        // var newlabel = document.createElement("Label");
+        // newlabel.setAttribute("for",i);
+        // newlabel.innerHTML = "Image2";
+        // i.appendChild(newlabel);
+
+        // var form = document.getElementsByTagName('form')[0].appendChild(i);
+        //
+        // document.getElementsByTagName('body')[0].appendChild(form);
+      }
+    </script>
+
+  </body>
+</html>
