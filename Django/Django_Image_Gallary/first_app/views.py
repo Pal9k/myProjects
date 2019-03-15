@@ -25,12 +25,7 @@ def index(request):
 
         img.save()
 
-        return render(request, 'first_app/index.html')
+        return render(request, 'first_app/show_image.html', {'text':img.text,'description':img.description,'img1':'media/'+str(img.img1)})
 
     else:
         return render(request,'first_app/index.html')
-#
-
-# class index(ListView):
-#     model = Image_Gallary
-#     template_name = 'index.html'

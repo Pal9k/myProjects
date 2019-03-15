@@ -32,24 +32,33 @@
 
     <script>
 
+    var cnt_button_clicked = 1
+
       function myFunction() {
-        var input = document.createElement("input");
-        input.type = "file";
-        input.name = "user_name";
-        input.id = "user_name1";
-        input.accept = "image/*";
+        cnt_button_clicked += 1
 
-        var form = document.getElementById("imgFrom");
-        var plusBTN = document.getElementById("plus");
-        form.insertBefore (input,plusBTN);
+        console.log(cnt_button_clicked);
 
-        var label = document.createElement('p');
-        label.innerHTML = "Image2";
-        form.insertBefore(label,input);
+        if (cnt_button_clicked <= 5) {
+          name = 'img'+String(cnt_button_clicked)
 
-        var br = document.createElement('br');
-        form.insertBefore(br,plusBTN);
+          var input = document.createElement("input");
+          input.type = "file";
+          input.name = name;
+          input.id = name;
+          input.accept = "image/*";
 
+          var form = document.getElementById("imgFrom");
+          var plusBTN = document.getElementById("plus");
+          form.insertBefore (input,plusBTN);
+
+          var label = document.createElement('p');
+          label.innerHTML = "Image"+String(cnt_button_clicked);
+          form.insertBefore(label,input);
+
+          var br = document.createElement('br');
+          form.insertBefore(br,plusBTN);
+        }
       }
     </script>
 
